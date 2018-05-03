@@ -24,7 +24,6 @@ export class AppComponent implements OnInit {
 		const ys = tf.tensor1d([1.6,2.7,2.9,3.19,1.684,2.53,3.366,2.596]);
 
 		await this.linearModel.fit(xs,ys);
-
 		console.log('model trained');
 	}
 
@@ -32,4 +31,17 @@ export class AppComponent implements OnInit {
 	  const output = this.linearModel.predict(tf.tensor2d([val], [1, 1])) as any;
   	this.prediction = Array.from(output.dataSync())[0]
 	}
+
+	function parse (){
+		console.log("parsing....")
+		var file = document.getElementById("file").files[0];
+		Papa.parse(file, {
+			complete: function(results){
+				console.log(results);
+			}
+		});
+	}
+
+
+
 }
